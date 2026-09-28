@@ -1,0 +1,6 @@
+{
+  "name": "Karaoke Sync Studio",
+  "description": "Полнофункциональная студия автоматического создания караоке и таймкодов из аудио с помощью Gemini AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
