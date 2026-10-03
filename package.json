@@ -1,0 +1,80 @@
+{
+  "name": "karaoke-sync-studio",
+  "productName": "Karaoke Sync Studio",
+  "description": "Студия создания караоке, точных таймкодов и Full HD-видео с помощью Gemini AI.",
+  "author": "Frommer",
+  "private": true,
+  "version": "0.6.1",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "tsx server.ts",
+    "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
+    "start": "node dist/server.cjs",
+    "preview": "vite preview",
+    "clean": "rm -rf dist server.js",
+    "lint": "tsc --noEmit",
+    "electron": "electron .",
+    "smoke:frozen": "node scripts/run-release-smoke.cjs",
+    "dist:electron": "npm run build && electron-builder --win dir --x64 && npm run smoke:frozen && powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-installer.ps1"
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "mp4-muxer": "^5.2.2",
+    "mp4box": "^2.4.1",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "vite": "^6.2.3",
+    "wavesurfer.js": "^7.12.11"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.14.0",
+    "autoprefixer": "^10.4.21",
+    "electron": "^42.11.2",
+    "electron-builder": "^26.15.3",
+    "esbuild": "^0.25.0",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.3"
+  },
+  "build": {
+    "appId": "ru.frommer.karasyncstudio",
+    "productName": "Karaoke Sync Studio",
+    "electronDist": "node_modules/electron/dist",
+    "directories": {
+      "output": "Karaoke-Sync-Studio-0.6.1"
+    },
+    "files": [
+      "electron/**/*",
+      "dist/**/*",
+      "RELEASE_NOTES.md",
+      "package.json"
+    ],
+    "win": {
+      "icon": "electron/icon.ico",
+      "target": [
+        {
+          "target": "dir",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true,
+    "esbuild@0.28.2": true,
+    "protobufjs@7.6.6": true,
+    "electron-winstaller@5.4.0": true
+  },
+  "license": "MIT"
+}

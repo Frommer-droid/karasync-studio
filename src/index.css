@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+.app-icon-shell {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  isolation: isolate;
+}
+
+.app-icon-shell::before {
+  position: absolute;
+  inset: 18%;
+  z-index: -1;
+  content: "";
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgb(34 211 238 / 55%), rgb(99 102 241 / 45%));
+  filter: blur(12px);
+  opacity: 0.7;
+}
+
+.app-icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  filter: drop-shadow(0 8px 14px rgb(34 211 238 / 12%));
+}
+
+.icon-control {
+  display: inline-flex;
+  min-width: 2rem;
+  min-height: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-control svg {
+  stroke-width: 1.8;
+  filter: drop-shadow(0 2px 6px rgb(34 211 238 / 8%));
+  transition: transform 140ms ease, filter 140ms ease;
+}
+
+.icon-control:hover:not(:disabled) svg {
+  transform: translateY(-1px) scale(1.05);
+  filter: drop-shadow(0 3px 8px rgb(34 211 238 / 18%));
+}
+
+.icon-control:focus-visible {
+  outline: 2px solid rgb(34 211 238 / 85%);
+  outline-offset: 2px;
+}
+
+.icon-control--tiny {
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon-control svg {
+    transition: none;
+  }
+
+  .icon-control:hover:not(:disabled) svg {
+    transform: none;
+  }
+}

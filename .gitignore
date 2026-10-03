@@ -1,0 +1,12 @@
+node_modules/
+bun.lock
+build/
+build-installer/
+dist/
+Karaoke-Sync-Studio-*/
+coverage/
+.playwright-cli/
+.DS_Store
+*.log
+.env*
+!.env.example
